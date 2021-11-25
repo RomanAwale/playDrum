@@ -1,0 +1,35 @@
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+}
+.keys {
+  padding: 15px;
+  background: black;
+}
+.key {
+  background: white;
+  width: 100px;
+  height: 100px;
+  text-align: center;
+  border: 2px solid blue;
+  transition: all 0.1s;
+  text-shadow: 0 0 5px blue;
+}
+.flex-gap {
+  display: inline-flex;
+  flex-wrap: wrap;
+}
+.flex-gap > div {
+  margin: 10px;
+}
+
+.playing {
+  transform: scale(1.1);
+  border-color: white;
+  color: white;
+  background: blue;
+  box-shadow: 0 0 10px blue;
+}

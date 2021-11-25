@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Drum</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="keys flex-gap">
+      <div data-key="a" class="key">
+        <h2>A</h2>
+        <p class="sound">Clap</p>
+      </div>
+      <div data-key="s" class="key">
+        <h2>S</h2>
+        <p class="sound">Hihat</p>
+      </div>
+      <div data-key="d" class="key">
+        <h2>D</h2>
+        <p class="sound">Kick</p>
+      </div>
+      <div data-key="f" class="key">
+        <h2>F</h2>
+        <p class="sound">Openhat</p>
+      </div>
+      <div data-key="g" class="key">
+        <h2>G</h2>
+        <p class="sound">Boom</p>
+      </div>
+      <div data-key="h" class="key">
+        <h2>H</h2>
+        <p class="sound">Ride</p>
+      </div>
+      <div data-key="j" class="key">
+        <h2>J</h2>
+        <p class="sound">Snare</p>
+      </div>
+      <div data-key="k" class="key">
+        <h2>K</h2>
+        <p class="sound">Tom</p>
+      </div>
+    </div>
+
+    <audio data-key="a" src="sounds/clap.mp3"></audio>
+    <audio data-key="s" src="sounds/hihat.mp3"></audio>
+    <audio data-key="d" src="sounds/kick.mp3"></audio>
+    <audio data-key="f" src="sounds/openhat.mp3"></audio>
+    <audio data-key="g" src="sounds/boom.mp3"></audio>
+    <audio data-key="h" src="sounds/ride.mp3"></audio>
+    <audio data-key="j" src="sounds/snare.mp3"></audio>
+    <audio data-key="k" src="sounds/tom.mp3"></audio>
+    <script>
+      function playSound(e) {
+        const audio = document.querySelector(`audio[data-key="${e.key}"]`);
+        const key = document.querySelector(`.key[data-key="${e.key}"]`);
+        if (!audio) return; // stop the function from running all together
+        audio.currentTime = 0; //rewind to the start
+        audio.play();
+        key.classList.add("playing");
+      }
+
+      function removeTransition(e) {
+        if (e.propertyName !== "transform") return;
+        this.classList.remove("playing");
+      }
+
+      const keys = document.querySelectorAll(".key");
+      keys.forEach((key) =>
+        key.addEventListener("transitionend", removeTransition)
+      );
+      window.addEventListener("keydown", playSound);
+    </script>
+  </body>
+</html>
